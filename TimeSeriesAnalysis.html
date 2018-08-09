@@ -11777,7 +11777,6 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="&#26178;&#31995;&#21015;&#12487;&#12540;&#12479;&#12434;&#29992;&#12356;&#12383;&#27231;&#26800;&#23398;&#32722;">&#26178;&#31995;&#21015;&#12487;&#12540;&#12479;&#12434;&#29992;&#12356;&#12383;&#27231;&#26800;&#23398;&#32722;<a class="anchor-link" href="#&#26178;&#31995;&#21015;&#12487;&#12540;&#12479;&#12434;&#29992;&#12356;&#12383;&#27231;&#26800;&#23398;&#32722;">&#182;</a></h1><p>時系列データに対する機械学習手法（Lasso, Ridge, サポートベクターマシン, ランダムフォレスト、ブースティング木、XGBoost、LightGBM）の使用例。</p>
 <p>参考：<a href="https://code-examples.net/ja/docs/scikit_learn/modules/cross_validation">https://code-examples.net/ja/docs/scikit_learn/modules/cross_validation</a></p>
-<p>参考：<a href="https://qiita.com/nazoking@github/items/1c5106a844084cd8539a">https://qiita.com/nazoking@github/items/1c5106a844084cd8539a</a></p>
 
 </div>
 </div>
@@ -11954,8 +11953,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="&#12463;&#12525;&#12473;&#12496;&#12522;&#12487;&#12540;&#12471;&#12519;&#12531;&#12395;&#12362;&#12369;&#12427;&#20998;&#21106;&#26041;&#27861;&#12398;&#25351;&#23450;&#12290;">&#12463;&#12525;&#12473;&#12496;&#12522;&#12487;&#12540;&#12471;&#12519;&#12531;&#12395;&#12362;&#12369;&#12427;&#20998;&#21106;&#26041;&#27861;&#12398;&#25351;&#23450;&#12290;<a class="anchor-link" href="#&#12463;&#12525;&#12473;&#12496;&#12522;&#12487;&#12540;&#12471;&#12519;&#12531;&#12395;&#12362;&#12369;&#12427;&#20998;&#21106;&#26041;&#27861;&#12398;&#25351;&#23450;&#12290;">&#182;</a></h3><p>時系列データでのクロスバリデーションはやや特殊。未来のデータを予測に使ってしまわないように注意して分割する必要がある。</p>
-
+<h3 id="&#12463;&#12525;&#12473;&#12496;&#12522;&#12487;&#12540;&#12471;&#12519;&#12531;&#12395;&#12362;&#12369;&#12427;&#20998;&#21106;&#26041;&#27861;&#12398;&#25351;&#23450;&#12290;">&#12463;&#12525;&#12473;&#12496;&#12522;&#12487;&#12540;&#12471;&#12519;&#12531;&#12395;&#12362;&#12369;&#12427;&#20998;&#21106;&#26041;&#27861;&#12398;&#25351;&#23450;&#12290;<a class="anchor-link" href="#&#12463;&#12525;&#12473;&#12496;&#12522;&#12487;&#12540;&#12471;&#12519;&#12531;&#12395;&#12362;&#12369;&#12427;&#20998;&#21106;&#26041;&#27861;&#12398;&#25351;&#23450;&#12290;">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -11964,11 +11962,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 最も愚直に、手作業で指定する方法がこちら。</span>
-
-<span class="c1"># ハイパーパラメータを仮置きし、400個の過去データからパラメータを決め、100個の将来データで精度を評価、</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># ハイパーパラメータを仮置きし、400個の過去データからパラメータを決め、100個の将来データで精度を評価、</span>
 <span class="c1"># という作業をウィンドウをずらしながら5回繰り返すものとする。</span>
-
 <span class="n">tscv</span>  <span class="o">=</span> <span class="p">[(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">500</span><span class="p">)),</span>
          <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">)),</span>
          <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">600</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">600</span><span class="p">,</span> <span class="mi">700</span><span class="p">)),</span>
@@ -11985,26 +11980,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>TimeSeriesSplit関数を使うこともできるが、分け方がイマイチか。</p>
-<p>tscv = TimeSeriesSplit(n_splits=5)</p>
-<p>これだとデータ900個を6等分し、</p>
-<p>1回目：第1グループ150個の過去データからパラメータを決め、第2グループ150個の将来データで精度を評価、</p>
-<p>2回目：第1+第2グループ300個の過去データからパラメータを決め、第3グループ150個の将来データで精度を評価、</p>
-<p>3回目：第1+第2+第3グループ450個の過去データからパラメータを決め、第4グループ150個の将来データで精度を評価、</p>
-<p>4回目：第1+第2+第3+第4グループ600個の過去データからパラメータを決め、第5グループ150個の将来データで精度を評価、</p>
-<p>5回目：第1+第2+第3+第4+第5グループ750個の過去データからパラメータを決め、第6グループ150個の将来データで精度を評価、</p>
-<p>というクロスバリデーションを行ってしまうので、1回目のパラメータ推計で用いられるデータの個数がどうしても少なくなる。</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="&#21508;&#27231;&#26800;&#23398;&#32722;&#25163;&#27861;&#12434;&#23455;&#34892;">&#21508;&#27231;&#26800;&#23398;&#32722;&#25163;&#27861;&#12434;&#23455;&#34892;<a class="anchor-link" href="#&#21508;&#27231;&#26800;&#23398;&#32722;&#25163;&#27861;&#12434;&#23455;&#34892;">&#182;</a></h1><p>Lasso, Ridge, サポートベクターマシン, ランダムフォレスト、ブースティング木、XGBoost、LightGBM</p>
-<p>ただしXGBoostはpipによる簡単なインストールができないので、使えるようにするためには下記書籍に記載されているような面倒な作業が必要。
-<a href="https://www.amazon.co.jp/dp/4254275838">https://www.amazon.co.jp/dp/4254275838</a></p>
+<p>ただしXGBoostはpipによる簡単なインストールはできないので、下記の書籍に記載されているような作業が必要。</p>
+<p><a href="https://www.amazon.co.jp/dp/4254275838">https://www.amazon.co.jp/dp/4254275838</a></p>
 
 </div>
 </div>
@@ -12224,8 +12202,7 @@ RMSR is 0.06767921320692082
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="&#12469;&#12509;&#12540;&#12488;&#12505;&#12463;&#12479;&#12540;&#12510;&#12471;&#12531;&#12398;CV&#12391;&#19978;&#20301;&#12473;&#12467;&#12450;&#12434;&#20986;&#12375;&#12383;&#12495;&#12452;&#12497;&#12540;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;&#34920;&#31034;">&#12469;&#12509;&#12540;&#12488;&#12505;&#12463;&#12479;&#12540;&#12510;&#12471;&#12531;&#12398;CV&#12391;&#19978;&#20301;&#12473;&#12467;&#12450;&#12434;&#20986;&#12375;&#12383;&#12495;&#12452;&#12497;&#12540;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;&#34920;&#31034;<a class="anchor-link" href="#&#12469;&#12509;&#12540;&#12488;&#12505;&#12463;&#12479;&#12540;&#12510;&#12471;&#12531;&#12398;CV&#12391;&#19978;&#20301;&#12473;&#12467;&#12450;&#12434;&#20986;&#12375;&#12383;&#12495;&#12452;&#12497;&#12540;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;&#34920;&#31034;">&#182;</a></h4><p>参考：<a href="http://www.procrasist.com/entry/10-cross-validation">http://www.procrasist.com/entry/10-cross-validation</a></p>
-
+<h4 id="&#12469;&#12509;&#12540;&#12488;&#12505;&#12463;&#12479;&#12540;&#12510;&#12471;&#12531;&#12398;CV&#12391;&#19978;&#20301;&#12473;&#12467;&#12450;&#12434;&#20986;&#12375;&#12383;&#12495;&#12452;&#12497;&#12540;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;&#34920;&#31034;">&#12469;&#12509;&#12540;&#12488;&#12505;&#12463;&#12479;&#12540;&#12510;&#12471;&#12531;&#12398;CV&#12391;&#19978;&#20301;&#12473;&#12467;&#12450;&#12434;&#20986;&#12375;&#12383;&#12495;&#12452;&#12497;&#12540;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;&#34920;&#31034;<a class="anchor-link" href="#&#12469;&#12509;&#12540;&#12488;&#12505;&#12463;&#12479;&#12540;&#12510;&#12471;&#12531;&#12398;CV&#12391;&#19978;&#20301;&#12473;&#12467;&#12450;&#12434;&#20986;&#12375;&#12383;&#12495;&#12452;&#12497;&#12540;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;&#34920;&#31034;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -12283,35 +12260,35 @@ RMSR is 0.06767921320692082
       <td>{'C': 0.5, 'kernel': 'linear'}</td>
       <td>-0.004771</td>
       <td>0.000474</td>
-      <td>0.009418</td>
+      <td>0.012597</td>
     </tr>
     <tr>
       <th>1</th>
       <td>{'C': 0.1, 'kernel': 'linear'}</td>
       <td>-0.008620</td>
       <td>0.000878</td>
-      <td>0.005161</td>
+      <td>0.005564</td>
     </tr>
     <tr>
       <th>0</th>
       <td>{'C': 0.01, 'kernel': 'linear'}</td>
       <td>-0.481637</td>
       <td>0.031379</td>
-      <td>0.006811</td>
+      <td>0.004919</td>
     </tr>
     <tr>
       <th>7</th>
       <td>{'C': 0.5, 'gamma': 0.001, 'kernel': 'rbf'}</td>
       <td>-1.071478</td>
       <td>0.050322</td>
-      <td>0.010105</td>
+      <td>0.016510</td>
     </tr>
     <tr>
       <th>5</th>
       <td>{'C': 0.1, 'gamma': 0.001, 'kernel': 'rbf'}</td>
       <td>-1.154722</td>
       <td>0.055038</td>
-      <td>0.010713</td>
+      <td>0.017144</td>
     </tr>
   </tbody>
 </table>
@@ -12329,7 +12306,6 @@ RMSR is 0.06767921320692082
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="4.-&#12521;&#12531;&#12480;&#12512;&#12501;&#12457;&#12524;&#12473;&#12488;">4. &#12521;&#12531;&#12480;&#12512;&#12501;&#12457;&#12524;&#12473;&#12488;<a class="anchor-link" href="#4.-&#12521;&#12531;&#12480;&#12512;&#12501;&#12457;&#12524;&#12473;&#12488;">&#182;</a></h1><p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html#sklearn.ensemble.RandomForestRegressor">http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html#sklearn.ensemble.RandomForestRegressor</a></p>
-<p><a href="https://data-science.gr.jp/implementation/iml_sklearn_random_forest.html">https://data-science.gr.jp/implementation/iml_sklearn_random_forest.html</a></p>
 
 </div>
 </div>
@@ -12462,35 +12438,35 @@ RMSR is 0.10869838949166469
       <td>{'max_depth': 9, 'n_estimators': 100}</td>
       <td>-0.020804</td>
       <td>0.003736</td>
-      <td>0.440557</td>
+      <td>0.428734</td>
     </tr>
     <tr>
       <th>162</th>
       <td>{'max_depth': 9, 'n_estimators': 110}</td>
       <td>-0.020805</td>
       <td>0.003789</td>
-      <td>0.498207</td>
+      <td>0.442255</td>
     </tr>
     <tr>
       <th>164</th>
       <td>{'max_depth': 9, 'n_estimators': 130}</td>
       <td>-0.020817</td>
       <td>0.003836</td>
-      <td>0.582510</td>
+      <td>0.568537</td>
     </tr>
     <tr>
       <th>160</th>
       <td>{'max_depth': 9, 'n_estimators': 90}</td>
       <td>-0.020834</td>
       <td>0.003710</td>
-      <td>0.387803</td>
+      <td>0.391121</td>
     </tr>
     <tr>
       <th>163</th>
       <td>{'max_depth': 9, 'n_estimators': 120}</td>
       <td>-0.020881</td>
       <td>0.003792</td>
-      <td>0.538078</td>
+      <td>0.487360</td>
     </tr>
   </tbody>
 </table>
@@ -12508,7 +12484,6 @@ RMSR is 0.10869838949166469
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="5.-&#12502;&#12540;&#12473;&#12486;&#12451;&#12531;&#12464;&#26408;">5. &#12502;&#12540;&#12473;&#12486;&#12451;&#12531;&#12464;&#26408;<a class="anchor-link" href="#5.-&#12502;&#12540;&#12473;&#12486;&#12451;&#12531;&#12464;&#26408;">&#182;</a></h1><p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html#sklearn.ensemble.GradientBoostingRegressor">http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html#sklearn.ensemble.GradientBoostingRegressor</a></p>
-<p><a href="https://qiita.com/nazoking@github/items/51a46256ecda598b60dd">https://qiita.com/nazoking@github/items/51a46256ecda598b60dd</a></p>
 
 </div>
 </div>
@@ -12642,35 +12617,35 @@ RMSR is 0.09771022674078265
       <td>{'max_depth': 2, 'n_estimators': 190}</td>
       <td>-0.013474</td>
       <td>0.002953</td>
-      <td>0.098885</td>
+      <td>0.131561</td>
     </tr>
     <tr>
       <th>56</th>
       <td>{'max_depth': 3, 'n_estimators': 190}</td>
       <td>-0.013552</td>
       <td>0.002805</td>
-      <td>0.121816</td>
+      <td>0.138637</td>
     </tr>
     <tr>
       <th>55</th>
       <td>{'max_depth': 3, 'n_estimators': 180}</td>
       <td>-0.013629</td>
       <td>0.002846</td>
-      <td>0.107788</td>
+      <td>0.142801</td>
     </tr>
     <tr>
       <th>36</th>
       <td>{'max_depth': 2, 'n_estimators': 180}</td>
       <td>-0.013644</td>
       <td>0.002955</td>
-      <td>0.088464</td>
+      <td>0.120840</td>
     </tr>
     <tr>
       <th>54</th>
       <td>{'max_depth': 3, 'n_estimators': 170}</td>
       <td>-0.013670</td>
       <td>0.002869</td>
-      <td>0.102189</td>
+      <td>0.131562</td>
     </tr>
   </tbody>
 </table>
@@ -12687,10 +12662,7 @@ RMSR is 0.09771022674078265
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="6.-&#12491;&#12517;&#12540;&#12521;&#12523;&#12493;&#12483;&#12488;&#65288;&#22810;&#23652;&#12497;&#12540;&#12475;&#12503;&#12488;&#12525;&#12531;&#65289;">6. &#12491;&#12517;&#12540;&#12521;&#12523;&#12493;&#12483;&#12488;&#65288;&#22810;&#23652;&#12497;&#12540;&#12475;&#12503;&#12488;&#12525;&#12531;&#65289;<a class="anchor-link" href="#6.-&#12491;&#12517;&#12540;&#12521;&#12523;&#12493;&#12483;&#12488;&#65288;&#22810;&#23652;&#12497;&#12540;&#12475;&#12503;&#12488;&#12525;&#12531;&#65289;">&#182;</a></h1><p>公式：<a href="http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPRegressor.html#sklearn.neural_network.MLPRegressor">http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPRegressor.html#sklearn.neural_network.MLPRegressor</a></p>
-<p>シンプルな計算例：<a href="https://qiita.com/mix_dvd/items/c37ef06b1ba58bf6d578">https://qiita.com/mix_dvd/items/c37ef06b1ba58bf6d578</a></p>
-<p>丁寧なパラメータ解説：<a href="https://data-science.gr.jp/implementation/iml_sklearn_mlp.html">https://data-science.gr.jp/implementation/iml_sklearn_mlp.html</a></p>
-<p>丁寧なパラメータ解説：<a href="https://spjai.com/neural-network-parameter/">https://spjai.com/neural-network-parameter/</a></p>
+<h1 id="6.-&#12491;&#12517;&#12540;&#12521;&#12523;&#12493;&#12483;&#12488;&#65288;&#22810;&#23652;&#12497;&#12540;&#12475;&#12503;&#12488;&#12525;&#12531;&#65289;">6. &#12491;&#12517;&#12540;&#12521;&#12523;&#12493;&#12483;&#12488;&#65288;&#22810;&#23652;&#12497;&#12540;&#12475;&#12503;&#12488;&#12525;&#12531;&#65289;<a class="anchor-link" href="#6.-&#12491;&#12517;&#12540;&#12521;&#12523;&#12493;&#12483;&#12488;&#65288;&#22810;&#23652;&#12497;&#12540;&#12475;&#12503;&#12488;&#12525;&#12531;&#65289;">&#182;</a></h1><p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPRegressor.html#sklearn.neural_network.MLPRegressor">http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPRegressor.html#sklearn.neural_network.MLPRegressor</a></p>
 
 </div>
 </div>
@@ -12824,35 +12796,35 @@ RMSR is 0.06914007904357049
       <td>{'batch_size': 20, 'hidden_layer_sizes': (10, 5)}</td>
       <td>-0.005527</td>
       <td>0.001030</td>
-      <td>0.933266</td>
+      <td>1.008667</td>
     </tr>
     <tr>
       <th>5</th>
       <td>{'batch_size': 50, 'hidden_layer_sizes': (10, 5)}</td>
       <td>-0.006580</td>
       <td>0.001154</td>
-      <td>0.923160</td>
+      <td>0.851420</td>
     </tr>
     <tr>
       <th>3</th>
       <td>{'batch_size': 20, 'hidden_layer_sizes': (10, ...</td>
       <td>-0.007713</td>
       <td>0.001430</td>
-      <td>1.964085</td>
+      <td>1.954698</td>
     </tr>
     <tr>
       <th>9</th>
       <td>{'batch_size': 100, 'hidden_layer_sizes': (10,...</td>
       <td>-0.008976</td>
       <td>0.001711</td>
-      <td>0.883088</td>
+      <td>0.842444</td>
     </tr>
     <tr>
       <th>0</th>
       <td>{'batch_size': 20, 'hidden_layer_sizes': 10}</td>
       <td>-0.011585</td>
       <td>0.001288</td>
-      <td>0.870888</td>
+      <td>0.859879</td>
     </tr>
   </tbody>
 </table>
@@ -12870,7 +12842,6 @@ RMSR is 0.06914007904357049
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="7.-XGBoost">7. XGBoost<a class="anchor-link" href="#7.-XGBoost">&#182;</a></h1><p><a href="http://tekenuko.hatenablog.com/entry/2016/09/22/220814">http://tekenuko.hatenablog.com/entry/2016/09/22/220814</a></p>
-<p><a href="https://qiita.com/onlyzs/items/46305d3ca41f0a764b55">https://qiita.com/onlyzs/items/46305d3ca41f0a764b55</a></p>
 
 </div>
 </div>
@@ -13045,9 +13016,6 @@ RMSR is 0.10709484865192571
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="8.-LightGBM">8. LightGBM<a class="anchor-link" href="#8.-LightGBM">&#182;</a></h1><p><a href="https://blog.amedama.jp/entry/2018/05/01/081842">https://blog.amedama.jp/entry/2018/05/01/081842</a></p>
-<p><a href="https://stackoverrun.com/ja/q/12370570">https://stackoverrun.com/ja/q/12370570</a></p>
-<p><a href="http://longtweets.hatenablog.com/?page=1520156276">http://longtweets.hatenablog.com/?page=1520156276</a></p>
-<p><a href="https://qiita.com/TomokIshii/items/3729c1b9c658cc48b5cb">https://qiita.com/TomokIshii/items/3729c1b9c658cc48b5cb</a></p>
 
 </div>
 </div>
